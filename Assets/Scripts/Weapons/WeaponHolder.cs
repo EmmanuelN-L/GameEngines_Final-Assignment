@@ -19,10 +19,13 @@ public class WeaponHolder : MonoBehaviour
 
     //Ref
     private Camera ViewCamera;
+    private WeaponComponent EquippedWeapon;
+
     private static readonly int AimHorizontalHash = Animator.StringToHash("AimHorizontal");
     private static readonly int AimVerticalHash = Animator.StringToHash("AimVertical");
     private static readonly int IsFiringHash = Animator.StringToHash("IsFiring");
     private static readonly int IsReloadingHash = Animator.StringToHash("IsReloading");
+    private static readonly int WeaponTypeHash = Animator.StringToHash("WeaponType");
 
     private void Awake()
     {
@@ -44,11 +47,12 @@ public class WeaponHolder : MonoBehaviour
        GameObject spawnWeapon =  Instantiate(WeaponToSpawn,  weaponSocketLocation);
         if (spawnWeapon)
         {
-            WeaponComponent weapon = spawnWeapon.GetComponent<WeaponComponent>();
-            if(weapon)
+            EquippedWeapon = spawnWeapon.GetComponent<WeaponComponent>();
+            if(EquippedWeapon)
             {
-                GripIKLocation = weapon.GripLocation;
-                
+                EquippedWeapon.Initialize(this, PlayerCrosshair);
+                GripIKLocation = EquippedWeapon.GripLocation;
+                PlayerAnimator.SetInteger(WeaponTypeHash, (int)EquippedWeapon.WeaponInformation.WeaponType);               
             }
         }
     }
@@ -59,36 +63,49 @@ public class WeaponHolder : MonoBehaviour
         PlayerAnimator.SetIKPosition(AvatarIKGoal.LeftHand, GripIKLocation.position);
     }
 
-    public void OnReload(InputValue button)
-    {
-        
-            if (button.isPressed)
-            {
-                PlayerController.IsReloading = true;
-                PlayerAnimator.SetBool(IsReloadingHash, PlayerController.IsReloading);
-                Debug.Log("Reloading");
-            }
-            else
-            {
-                PlayerController.IsReloading = false;
-                PlayerAnimator.SetBool(IsReloadingHash, PlayerController.IsReloading);
-            }
-    }
-
     public void OnFire(InputValue button)
     {
         if (button.isPressed)
         {
             PlayerController.IsFiring = true;
             PlayerAnimator.SetBool(IsFiringHash, PlayerController.IsFiring);
-            Debug.Log("Shot");
+            EquippedWeapon.StartFiringWeapon();
+            Debug.Log("hello");
         }
         else
         {
             PlayerController.IsFiring = false;
             PlayerAnimator.SetBool(IsFiringHash, PlayerController.IsFiring);
+            EquippedWeapon.StopFiringWeapon();
         }
 
+    }
+
+    public void OnReload(InputValue button)
+    {
+        StartReloading();
+
+
+    }
+
+    public void StartReloading()
+    {
+        PlayerController.IsReloading = true;
+        PlayerAnimator.SetBool(IsReloadingHash, PlayerController.IsReloading);
+        EquippedWeapon.StartFiringWeapon();
+
+        InvokeRepeating(nameof(StopReloading), 0, 0.1f);
+    }
+
+    public void StopReloading()
+    {
+        if (PlayerAnimator.GetBool(IsReloadingHash)) return;
+
+        PlayerController.IsReloading = false;
+
+        //EquippedWeapon.StopReloading();
+
+        CancelInvoke(nameof(StopReloading));
     }
     public void OnLook(InputValue delata)
     {

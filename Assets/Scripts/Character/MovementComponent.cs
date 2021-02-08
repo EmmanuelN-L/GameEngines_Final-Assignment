@@ -4,26 +4,26 @@ using UnityEngine.InputSystem;
 
 namespace Character
 {
-    
+
     public class MovementComponent : MonoBehaviour
     {
         [SerializeField] private float WalkSpeed;
         [SerializeField] private float RunSpeed;
         [SerializeField] private float JumpForce;
-        
+
         private Vector2 InputVector = Vector2.zero;
         private Vector3 MoveDirection = Vector3.zero;
-        
+
         //Comp
         private Animator PlayerAnimator;
         private PlayerController PlayerController;
         private Rigidbody PlayerRigidbody;
-        
-        
+
+
         //Reference 
         private Transform PlayerTransform;
 
-        
+
         //Animator Hashes
         private readonly int MovementXHash = Animator.StringToHash("MovementX");
         private readonly int MovementZHash = Animator.StringToHash("MovementZ");
@@ -42,22 +42,22 @@ namespace Character
         private void Update()
         {
             if (PlayerController.IsJumping) return;
-            
-            if (!(InputVector.magnitude > 0))  MoveDirection = Vector3.zero;
-            
+
+            if (!(InputVector.magnitude > 0)) MoveDirection = Vector3.zero;
+
             MoveDirection = PlayerTransform.forward * InputVector.y + PlayerTransform.right * InputVector.x;
 
             float currentSpeed = PlayerController.IsRunning ? RunSpeed : WalkSpeed;
 
-            Vector3 movementDirection = new Vector3(InputVector.x, 0 , InputVector.y) * (currentSpeed * Time.deltaTime);
-            
+            Vector3 movementDirection = MoveDirection * (currentSpeed * Time.deltaTime);
+
             PlayerTransform.position += movementDirection;
         }
 
         public void OnMovement(InputValue value)
         {
             InputVector = value.Get<Vector2>();
-            
+
             PlayerAnimator.SetFloat(MovementXHash, InputVector.x);
             PlayerAnimator.SetFloat(MovementZHash, InputVector.y);
         }
@@ -72,7 +72,7 @@ namespace Character
         {
             PlayerController.IsJumping = true;
             PlayerAnimator.SetBool(IsJumpingHash, true);
-            
+
             PlayerRigidbody.AddForce((transform.up + MoveDirection) * JumpForce, ForceMode.Impulse);
         }
 
