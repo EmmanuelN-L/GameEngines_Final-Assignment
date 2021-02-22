@@ -11,9 +11,14 @@ public class WeaponHolder : MonoBehaviour
     [SerializeField] private Transform weaponSocketLocation;
 
     private Transform GripIKLocation;
-   
+
+    private bool wasFiring = false;
+    private bool FiringPressed = false;
+
     //Components
+    public Character.PlayerController Controller => PlayerController;
     private Character.PlayerController PlayerController;
+
     private CrosshairScript PlayerCrosshair;
     private Animator PlayerAnimator;
 
@@ -64,9 +69,14 @@ public class WeaponHolder : MonoBehaviour
     }
 
     public void OnFire(InputValue button)
-    {
+    {  
+        
+        FiringPressed = button.isPressed;
+       
+        
         if (button.isPressed)
         {
+            if (EquippedWeapon.WeaponInformation.AmmoInClip <= 0) return;
             PlayerController.IsFiring = true;
             PlayerAnimator.SetBool(IsFiringHash, PlayerController.IsFiring);
             EquippedWeapon.StartFiringWeapon();
@@ -80,19 +90,39 @@ public class WeaponHolder : MonoBehaviour
         }
 
     }
+    public void startFiring()
+    {
+        FiringPressed = true;
+        PlayerController.IsFiring = true;
+        PlayerAnimator.SetBool(IsFiringHash, PlayerController.IsFiring);
+        EquippedWeapon.StartFiringWeapon();
+    }
+
+
+    public void stopFiring()
+    {
+        FiringPressed = false;
+        PlayerController.IsFiring = false;
+        PlayerAnimator.SetBool(IsFiringHash, PlayerController.IsFiring);
+        EquippedWeapon.StopFiringWeapon();
+    }
 
     public void OnReload(InputValue button)
     {
         StartReloading();
-
-
     }
 
     public void StartReloading()
     {
+        if (PlayerController.IsFiring)
+        {
+            wasFiring = true;
+            stopFiring();
+        }
+
         PlayerController.IsReloading = true;
         PlayerAnimator.SetBool(IsReloadingHash, PlayerController.IsReloading);
-        EquippedWeapon.StartFiringWeapon();
+        EquippedWeapon.startReloading();
 
         InvokeRepeating(nameof(StopReloading), 0, 0.1f);
     }
@@ -103,9 +133,15 @@ public class WeaponHolder : MonoBehaviour
 
         PlayerController.IsReloading = false;
 
-        //EquippedWeapon.StopReloading();
+        EquippedWeapon.stopReloading();
 
         CancelInvoke(nameof(StopReloading));
+
+        if(wasFiring && FiringPressed)
+        {
+            startFiring();
+            wasFiring=false;
+        }
     }
     public void OnLook(InputValue delata)
     {

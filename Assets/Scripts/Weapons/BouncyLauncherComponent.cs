@@ -16,7 +16,11 @@ public class BouncyLauncherComponent : WeaponComponent
     }
     protected new void FireWeapon()
     {
-        Debug.Log("Firing Weapon");
+        
+
+        if (WeaponStats.AmmoInClip > 0 && !Reloading && !WeaponHolder.Controller.IsRunning)
+        {
+            base.FireWeapon();
 
             Ray screenRay = ViewCamera.ScreenPointToRay(new Vector3(Crosshair.CurrentAimPosition.x,
                 Crosshair.CurrentAimPosition.y, 0));
@@ -32,6 +36,13 @@ public class BouncyLauncherComponent : WeaponComponent
                 Instantiate(launchRound, HitLocation.point, Quaternion.LookRotation(HitLocation.normal));
                 Rigidbody lr = launchRound.GetComponent<Rigidbody>();
             };
+        }
+        else if(WeaponStats.AmmoInClip <= 0)
+        {
+            if (!WeaponHolder) return;
+
+            WeaponHolder.StartReloading();
+        }
     }
 
     private void OnDrawGizmos()

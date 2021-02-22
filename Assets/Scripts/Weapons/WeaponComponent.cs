@@ -79,6 +79,40 @@ public class WeaponComponent : MonoBehaviour
 
     protected virtual void FireWeapon()
     {
-       // Debug.Log("Firing Weapon");
+        // Debug.Log("Firing Weapon");
+        WeaponStats.AmmoInClip--; 
+    }
+
+    public virtual void startReloading()
+    {
+        Reloading = true;
+        reloadWeapon();
+    }
+
+    public virtual void stopReloading()
+    {
+        Reloading = false;
+    }
+
+    protected virtual void reloadWeapon()
+    {
+        // AmmoInClip = 20  AmmoAvailible = 40 ClipSize = 20 BulletsToReload =
+        int bulletsToReload = WeaponStats.AmmoInClip - WeaponStats.ClipSize;
+
+        if (WeaponStats.AmmoInClip == WeaponStats.ClipSize)
+        {
+            Debug.Log("Clip is full!");
+        }
+        else if (bulletsToReload < 0 && WeaponStats.AmmoAvailible + bulletsToReload >= 0)
+        {
+            WeaponStats.AmmoInClip = WeaponStats.ClipSize;
+            WeaponStats.AmmoAvailible += bulletsToReload;
+        }
+        else
+        {
+            WeaponStats.AmmoInClip += WeaponStats.AmmoAvailible;
+            WeaponStats.AmmoAvailible = 0;
+        }
+        
     }
 }
