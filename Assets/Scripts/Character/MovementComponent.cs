@@ -4,13 +4,13 @@ using UnityEngine.InputSystem;
 
 namespace Character
 {
-
     public class MovementComponent : MonoBehaviour
     {
         public int CurrentHealth { get; set; }
         public int MaxHealth { get; set; }
 
         public UI_Script playerStats;
+        public LeverFunctionality lever;
 
         [SerializeField] private float WalkSpeed;
         [SerializeField] private float RunSpeed;
@@ -93,6 +93,7 @@ namespace Character
 
             playerStats.SetHealth(20);
             playerStats.setMoney(20);
+            lever.isLeverUp = false;
 
         }
 
@@ -102,6 +103,7 @@ namespace Character
 
             playerStats.SetHealth(-20);
             playerStats.setMoney(-20);
+            lever.isLeverUp = true;
 
         }
 
