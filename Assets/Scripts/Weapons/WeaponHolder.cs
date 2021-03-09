@@ -114,7 +114,7 @@ public class WeaponHolder : MonoBehaviour
 
     public void StartReloading()
     {
-        if (PlayerController.IsFiring)
+        if (EquippedWeapon.WeaponInformation.AmmoAvailible <= 0 && PlayerController.IsFiring)
         {
             wasFiring = true;
             stopFiring();

@@ -52,6 +52,22 @@
                     "expectedControlType": "Button",
                     "processors": "NormalizeVector2",
                     "interactions": "Press"
+                },
+                {
+                    "name": "TakeDamage",
+                    "type": "Button",
+                    "id": "e146554c-4d6b-46be-8edf-a41bb66286f5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "GainHealth",
+                    "type": "Button",
+                    "id": "1b25eb74-a203-470b-aa56-98128026b8b3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -162,6 +178,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "792d091a-21f6-4b9a-91a2-c61e9d39dd5f",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TakeDamage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8fabcc77-415a-40b2-869f-91cf45c43d90",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GainHealth",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

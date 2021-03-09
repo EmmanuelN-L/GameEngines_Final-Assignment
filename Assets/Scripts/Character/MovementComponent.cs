@@ -7,6 +7,11 @@ namespace Character
 
     public class MovementComponent : MonoBehaviour
     {
+        public int CurrentHealth { get; set; }
+        public int MaxHealth { get; set; }
+
+        public UI_Script playerStats;
+
         [SerializeField] private float WalkSpeed;
         [SerializeField] private float RunSpeed;
         [SerializeField] private float JumpForce;
@@ -29,6 +34,13 @@ namespace Character
         private readonly int MovementZHash = Animator.StringToHash("MovementZ");
         private readonly int IsRunningHash = Animator.StringToHash("IsRunning");
         private readonly int IsJumpingHash = Animator.StringToHash("IsJumping");
+
+        private void Start()
+        {
+            MaxHealth = 100;
+            CurrentHealth = MaxHealth;
+            playerStats.SetMaxHealth(MaxHealth);
+        }
 
         private void Awake()
         {
@@ -75,6 +87,24 @@ namespace Character
 
             PlayerRigidbody.AddForce((transform.up + MoveDirection) * JumpForce, ForceMode.Impulse);
         }
+        public void OnGainHealth(InputValue button)
+        {
+            Debug.Log("Gain Health");
+
+            playerStats.SetHealth(20);
+            playerStats.setMoney(20);
+
+        }
+
+        public void OnTakeDamage(InputValue button)
+        {
+            Debug.Log("Taking Damage");
+
+            playerStats.SetHealth(-20);
+            playerStats.setMoney(-20);
+
+        }
+
 
         private void OnCollisionEnter(Collision other)
         {
