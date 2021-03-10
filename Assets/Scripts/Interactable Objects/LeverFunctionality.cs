@@ -23,14 +23,14 @@ public class LeverFunctionality : MonoBehaviour
         if (down)
         {
             Quaternion_Rotate_From = transform.rotation;
-            Quaternion_Rotate_To = Quaternion.Euler(90, 0, 0);
+            Quaternion_Rotate_To = Quaternion.Euler(-90, transform.rotation.y, transform.rotation.z);
 
             transform.rotation = Quaternion.Lerp(Quaternion_Rotate_From, Quaternion_Rotate_To, Time.deltaTime * Rotation_Smoothness);
         }
         else
         {
             Quaternion_Rotate_From = transform.rotation;
-            Quaternion_Rotate_To = Quaternion.Euler(0, 0, 0);
+            Quaternion_Rotate_To = Quaternion.Euler(0, transform.rotation.y, transform.rotation.z);
 
             transform.rotation = Quaternion.Lerp(Quaternion_Rotate_From, Quaternion_Rotate_To, Time.deltaTime * Rotation_Smoothness);
         }
