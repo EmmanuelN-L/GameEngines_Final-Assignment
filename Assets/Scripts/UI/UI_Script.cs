@@ -11,11 +11,10 @@ public class UI_Script : MonoBehaviour
 
     private void Start()
     {
-
         SetMaxHealth(playerStats.MaxHealth);
         setMoney(playerStats.CurrentMoney);
-
     }
+
 
     public void SetMaxHealth(int health)
     {

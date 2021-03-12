@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace Character
 {
@@ -10,7 +11,9 @@ namespace Character
         public int MaxHealth { get; set; }
 
         public UI_Script playerStats;
+        private GameObject Lever;
         public LeverFunctionality lever;
+        bool leverInRange = false;
 
         [SerializeField] private float WalkSpeed;
         [SerializeField] private float RunSpeed;
@@ -82,10 +85,13 @@ namespace Character
 
         public void OnJump(InputValue button)
         {
-            PlayerController.IsJumping = true;
-            PlayerAnimator.SetBool(IsJumpingHash, true);
+            if (!PlayerController.IsJumping)
+            {
+                PlayerController.IsJumping = true;
+                PlayerAnimator.SetBool(IsJumpingHash, true);
 
-            PlayerRigidbody.AddForce((transform.up + MoveDirection) * JumpForce, ForceMode.Impulse);
+                PlayerRigidbody.AddForce((transform.up + MoveDirection) * JumpForce, ForceMode.Impulse);
+            }
         }
         public void OnGainHealth(InputValue button)
         {
@@ -107,6 +113,28 @@ namespace Character
 
         }
 
+        public void OnAction(InputValue button)
+        {
+            float distance = Vector3.Distance(lever.transform.position, transform.position);
+            if(distance <= 2)
+            {
+                if (lever.isLeverUp == false)
+                    lever.isLeverUp = true;
+                else
+                    lever.isLeverUp = false;
+            }
+        }
+
+        public void OnPause(InputValue button)
+        {
+            if (!GameManager.Instance.CursorActive)
+            {
+                AppEvents.Invoke_OnMouseCursorEnable(true);
+            }
+            SceneManager.LoadScene("MainMenu");
+
+        }
+
 
         private void OnCollisionEnter(Collision other)
         {
@@ -114,6 +142,14 @@ namespace Character
 
             PlayerController.IsJumping = false;
             PlayerAnimator.SetBool(IsJumpingHash, false);
+
+            //if (other.gameObject.CompareTag("Lever"))
+            //{
+            //    leverInRange = true;
+            //    Lever = other.gameObject;
+            //    Debug.Log(Lever);
+            //}
+            //else leverInRange = false;
         }
     }
 }

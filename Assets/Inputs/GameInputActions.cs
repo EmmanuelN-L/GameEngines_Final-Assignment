@@ -81,6 +81,22 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""029f7c69-eeb1-4f9a-afba-312bffc8c123"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Action"",
+                    ""type"": ""Button"",
+                    ""id"": ""f6d11594-98c2-4014-a798-ab0253e866b5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -215,6 +231,28 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                     ""action"": ""GainHealth"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""16387cb8-fee8-4b66-9678-25a7c421eed4"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0625485-2a8d-482e-ae91-2eaff864b74a"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -248,6 +286,8 @@ public class @GameInputActions : IInputActionCollection, IDisposable
         m_ThirdPerson_Reload = m_ThirdPerson.FindAction("Reload", throwIfNotFound: true);
         m_ThirdPerson_TakeDamage = m_ThirdPerson.FindAction("TakeDamage", throwIfNotFound: true);
         m_ThirdPerson_GainHealth = m_ThirdPerson.FindAction("GainHealth", throwIfNotFound: true);
+        m_ThirdPerson_Pause = m_ThirdPerson.FindAction("Pause", throwIfNotFound: true);
+        m_ThirdPerson_Action = m_ThirdPerson.FindAction("Action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -305,6 +345,8 @@ public class @GameInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_ThirdPerson_Reload;
     private readonly InputAction m_ThirdPerson_TakeDamage;
     private readonly InputAction m_ThirdPerson_GainHealth;
+    private readonly InputAction m_ThirdPerson_Pause;
+    private readonly InputAction m_ThirdPerson_Action;
     public struct ThirdPersonActions
     {
         private @GameInputActions m_Wrapper;
@@ -317,6 +359,8 @@ public class @GameInputActions : IInputActionCollection, IDisposable
         public InputAction @Reload => m_Wrapper.m_ThirdPerson_Reload;
         public InputAction @TakeDamage => m_Wrapper.m_ThirdPerson_TakeDamage;
         public InputAction @GainHealth => m_Wrapper.m_ThirdPerson_GainHealth;
+        public InputAction @Pause => m_Wrapper.m_ThirdPerson_Pause;
+        public InputAction @Action => m_Wrapper.m_ThirdPerson_Action;
         public InputActionMap Get() { return m_Wrapper.m_ThirdPerson; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -350,6 +394,12 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                 @GainHealth.started -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnGainHealth;
                 @GainHealth.performed -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnGainHealth;
                 @GainHealth.canceled -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnGainHealth;
+                @Pause.started -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnPause;
+                @Action.started -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnAction;
+                @Action.performed -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnAction;
+                @Action.canceled -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnAction;
             }
             m_Wrapper.m_ThirdPersonActionsCallbackInterface = instance;
             if (instance != null)
@@ -378,6 +428,12 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                 @GainHealth.started += instance.OnGainHealth;
                 @GainHealth.performed += instance.OnGainHealth;
                 @GainHealth.canceled += instance.OnGainHealth;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+                @Action.started += instance.OnAction;
+                @Action.performed += instance.OnAction;
+                @Action.canceled += instance.OnAction;
             }
         }
     }
@@ -401,5 +457,7 @@ public class @GameInputActions : IInputActionCollection, IDisposable
         void OnReload(InputAction.CallbackContext context);
         void OnTakeDamage(InputAction.CallbackContext context);
         void OnGainHealth(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+        void OnAction(InputAction.CallbackContext context);
     }
 }

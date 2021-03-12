@@ -60,6 +60,8 @@ public class WeaponHolder : MonoBehaviour
                 PlayerAnimator.SetInteger(WeaponTypeHash, (int)EquippedWeapon.WeaponInformation.WeaponType);               
             }
         }
+
+        PlayerEvent.Invoke_OnWeaponEquipped(EquippedWeapon);
     }
 
     private void OnAnimatorIK(int layerIndex)
@@ -147,7 +149,7 @@ public class WeaponHolder : MonoBehaviour
     {
         Vector2 independentMousePosition = ViewCamera.ScreenToViewportPoint(PlayerCrosshair.CurrentAimPosition);
 
-        Debug.Log(independentMousePosition);
+        //Debug.Log(independentMousePosition);
 
         PlayerAnimator.SetFloat(AimHorizontalHash, independentMousePosition.x);
         PlayerAnimator.SetFloat(AimVerticalHash, independentMousePosition.y);
