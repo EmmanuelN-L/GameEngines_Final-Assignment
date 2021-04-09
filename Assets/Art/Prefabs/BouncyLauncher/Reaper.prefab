@@ -173,10 +173,10 @@ MonoBehaviour:
     WeaponType: 1
     WeaponName: Bouncy Launcher
     Damage: 10
-    AmmoInClip: 30
-    ClipSize: 30
-    AmmoAvailible: 100
-    FireStartDelay: 0
+    AmmoInClip: 1
+    ClipSize: 1
+    AmmoAvailible: 30
+    FireStartDelay: 3
     FireRate: 0.2
     FireDistance: 100
     Repeating: 1

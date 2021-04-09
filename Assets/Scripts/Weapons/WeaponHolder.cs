@@ -8,7 +8,14 @@ public class WeaponHolder : MonoBehaviour
     [Header("weapon To Spawn"), SerializeField]
     private GameObject WeaponToSpawn;
 
-    [SerializeField] private Transform weaponSocketLocation;
+    public GameObject Weapon1;
+    public GameObject Weapon2;
+
+    public Shop shop;
+
+    private GameObject spawnWeapon;
+
+   [SerializeField] private Transform weaponSocketLocation;
 
     private Transform GripIKLocation;
 
@@ -49,7 +56,7 @@ public class WeaponHolder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       GameObject spawnWeapon =  Instantiate(WeaponToSpawn,  weaponSocketLocation);
+        spawnWeapon =  Instantiate(WeaponToSpawn,  weaponSocketLocation);
         if (spawnWeapon)
         {
             EquippedWeapon = spawnWeapon.GetComponent<WeaponComponent>();
@@ -62,7 +69,6 @@ public class WeaponHolder : MonoBehaviour
         }
 
         PlayerEvent.Invoke_OnWeaponEquipped(EquippedWeapon);
-        PlayerAnimator.SetBool(IsFiringHash, PlayerController.IsFiring);
     }
 
     private void OnAnimatorIK(int layerIndex)
@@ -155,4 +161,54 @@ public class WeaponHolder : MonoBehaviour
         PlayerAnimator.SetFloat(AimHorizontalHash, independentMousePosition.x);
         PlayerAnimator.SetFloat(AimVerticalHash, independentMousePosition.y);
     }
+
+    public void OnWeaponSwap1(InputValue button)
+    {
+        if (shop.BouncyLauncherPurchased)
+        {  
+            Debug.Log("Working");
+
+            Destroy(spawnWeapon);
+            spawnWeapon = null;
+
+            spawnWeapon = Instantiate(Weapon1, weaponSocketLocation);
+            if (spawnWeapon)
+            {
+                EquippedWeapon = spawnWeapon.GetComponent<WeaponComponent>();
+                if (EquippedWeapon)
+                {
+                EquippedWeapon.Initialize(this, PlayerCrosshair);
+                GripIKLocation = EquippedWeapon.GripLocation;
+                PlayerAnimator.SetInteger(WeaponTypeHash, (int)EquippedWeapon.WeaponInformation.WeaponType);
+                }
+            }
+
+        PlayerEvent.Invoke_OnWeaponEquipped(EquippedWeapon);
+
+        }
+
+    }
+
+    public void OnWeaponSwap2(InputValue button)
+    {
+        Debug.Log("Working");
+
+        Destroy(spawnWeapon);
+        spawnWeapon = null;
+
+        spawnWeapon = Instantiate(Weapon2, weaponSocketLocation);
+        if (spawnWeapon)
+        {
+            EquippedWeapon = spawnWeapon.GetComponent<WeaponComponent>();
+            if (EquippedWeapon)
+            {
+                EquippedWeapon.Initialize(this, PlayerCrosshair);
+                GripIKLocation = EquippedWeapon.GripLocation;
+                PlayerAnimator.SetInteger(WeaponTypeHash, (int)EquippedWeapon.WeaponInformation.WeaponType);
+            }
+        }
+
+        PlayerEvent.Invoke_OnWeaponEquipped(EquippedWeapon);
+    }
+
 }

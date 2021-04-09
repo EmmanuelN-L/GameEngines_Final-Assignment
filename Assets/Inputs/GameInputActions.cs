@@ -97,6 +97,54 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""WeaponSwap1"",
+                    ""type"": ""Button"",
+                    ""id"": ""979ffbd4-5bf9-4558-b3f8-76375a24156d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""WeaponSwap2"",
+                    ""type"": ""Button"",
+                    ""id"": ""41de7a73-ad61-4b12-baef-dc819638d75e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""OpenShop"",
+                    ""type"": ""Button"",
+                    ""id"": ""c47e0df2-3121-47ee-8e2b-3fbab8dc29e7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Increment"",
+                    ""type"": ""Button"",
+                    ""id"": ""9fe836c7-b80e-4ec0-b077-78176d91ad83"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Decrement"",
+                    ""type"": ""Button"",
+                    ""id"": ""98ab1cb8-837d-4d41-82f7-e1219b0edfd3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Confirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""bce9e232-d681-47d9-ad64-de65868ef511"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -253,6 +301,72 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                     ""action"": ""Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94fd3f92-f5c3-4dcf-9c66-07a3865ece24"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WeaponSwap1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e0016e28-0867-43c0-89ca-fc5cd49da1f7"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WeaponSwap2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""273264eb-add1-4bdf-b311-73f53f6845f2"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenShop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5ba3cb5-0d6b-4403-9f07-855446bde03c"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Increment"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e3d355de-28f8-42ab-8257-29665d0b6687"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Decrement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3d3461a8-36d5-4697-9cb0-8e8542e96651"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -288,6 +402,12 @@ public class @GameInputActions : IInputActionCollection, IDisposable
         m_ThirdPerson_GainHealth = m_ThirdPerson.FindAction("GainHealth", throwIfNotFound: true);
         m_ThirdPerson_Pause = m_ThirdPerson.FindAction("Pause", throwIfNotFound: true);
         m_ThirdPerson_Action = m_ThirdPerson.FindAction("Action", throwIfNotFound: true);
+        m_ThirdPerson_WeaponSwap1 = m_ThirdPerson.FindAction("WeaponSwap1", throwIfNotFound: true);
+        m_ThirdPerson_WeaponSwap2 = m_ThirdPerson.FindAction("WeaponSwap2", throwIfNotFound: true);
+        m_ThirdPerson_OpenShop = m_ThirdPerson.FindAction("OpenShop", throwIfNotFound: true);
+        m_ThirdPerson_Increment = m_ThirdPerson.FindAction("Increment", throwIfNotFound: true);
+        m_ThirdPerson_Decrement = m_ThirdPerson.FindAction("Decrement", throwIfNotFound: true);
+        m_ThirdPerson_Confirm = m_ThirdPerson.FindAction("Confirm", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -347,6 +467,12 @@ public class @GameInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_ThirdPerson_GainHealth;
     private readonly InputAction m_ThirdPerson_Pause;
     private readonly InputAction m_ThirdPerson_Action;
+    private readonly InputAction m_ThirdPerson_WeaponSwap1;
+    private readonly InputAction m_ThirdPerson_WeaponSwap2;
+    private readonly InputAction m_ThirdPerson_OpenShop;
+    private readonly InputAction m_ThirdPerson_Increment;
+    private readonly InputAction m_ThirdPerson_Decrement;
+    private readonly InputAction m_ThirdPerson_Confirm;
     public struct ThirdPersonActions
     {
         private @GameInputActions m_Wrapper;
@@ -361,6 +487,12 @@ public class @GameInputActions : IInputActionCollection, IDisposable
         public InputAction @GainHealth => m_Wrapper.m_ThirdPerson_GainHealth;
         public InputAction @Pause => m_Wrapper.m_ThirdPerson_Pause;
         public InputAction @Action => m_Wrapper.m_ThirdPerson_Action;
+        public InputAction @WeaponSwap1 => m_Wrapper.m_ThirdPerson_WeaponSwap1;
+        public InputAction @WeaponSwap2 => m_Wrapper.m_ThirdPerson_WeaponSwap2;
+        public InputAction @OpenShop => m_Wrapper.m_ThirdPerson_OpenShop;
+        public InputAction @Increment => m_Wrapper.m_ThirdPerson_Increment;
+        public InputAction @Decrement => m_Wrapper.m_ThirdPerson_Decrement;
+        public InputAction @Confirm => m_Wrapper.m_ThirdPerson_Confirm;
         public InputActionMap Get() { return m_Wrapper.m_ThirdPerson; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -400,6 +532,24 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                 @Action.started -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnAction;
                 @Action.performed -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnAction;
                 @Action.canceled -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnAction;
+                @WeaponSwap1.started -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnWeaponSwap1;
+                @WeaponSwap1.performed -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnWeaponSwap1;
+                @WeaponSwap1.canceled -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnWeaponSwap1;
+                @WeaponSwap2.started -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnWeaponSwap2;
+                @WeaponSwap2.performed -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnWeaponSwap2;
+                @WeaponSwap2.canceled -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnWeaponSwap2;
+                @OpenShop.started -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnOpenShop;
+                @OpenShop.performed -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnOpenShop;
+                @OpenShop.canceled -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnOpenShop;
+                @Increment.started -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnIncrement;
+                @Increment.performed -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnIncrement;
+                @Increment.canceled -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnIncrement;
+                @Decrement.started -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnDecrement;
+                @Decrement.performed -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnDecrement;
+                @Decrement.canceled -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnDecrement;
+                @Confirm.started -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnConfirm;
+                @Confirm.performed -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnConfirm;
+                @Confirm.canceled -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnConfirm;
             }
             m_Wrapper.m_ThirdPersonActionsCallbackInterface = instance;
             if (instance != null)
@@ -434,6 +584,24 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                 @Action.started += instance.OnAction;
                 @Action.performed += instance.OnAction;
                 @Action.canceled += instance.OnAction;
+                @WeaponSwap1.started += instance.OnWeaponSwap1;
+                @WeaponSwap1.performed += instance.OnWeaponSwap1;
+                @WeaponSwap1.canceled += instance.OnWeaponSwap1;
+                @WeaponSwap2.started += instance.OnWeaponSwap2;
+                @WeaponSwap2.performed += instance.OnWeaponSwap2;
+                @WeaponSwap2.canceled += instance.OnWeaponSwap2;
+                @OpenShop.started += instance.OnOpenShop;
+                @OpenShop.performed += instance.OnOpenShop;
+                @OpenShop.canceled += instance.OnOpenShop;
+                @Increment.started += instance.OnIncrement;
+                @Increment.performed += instance.OnIncrement;
+                @Increment.canceled += instance.OnIncrement;
+                @Decrement.started += instance.OnDecrement;
+                @Decrement.performed += instance.OnDecrement;
+                @Decrement.canceled += instance.OnDecrement;
+                @Confirm.started += instance.OnConfirm;
+                @Confirm.performed += instance.OnConfirm;
+                @Confirm.canceled += instance.OnConfirm;
             }
         }
     }
@@ -459,5 +627,11 @@ public class @GameInputActions : IInputActionCollection, IDisposable
         void OnGainHealth(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnAction(InputAction.CallbackContext context);
+        void OnWeaponSwap1(InputAction.CallbackContext context);
+        void OnWeaponSwap2(InputAction.CallbackContext context);
+        void OnOpenShop(InputAction.CallbackContext context);
+        void OnIncrement(InputAction.CallbackContext context);
+        void OnDecrement(InputAction.CallbackContext context);
+        void OnConfirm(InputAction.CallbackContext context);
     }
 }

@@ -11,7 +11,7 @@ public class UI_Script : MonoBehaviour
 
     private void Start()
     {
-        SetMaxHealth(playerStats.MaxHealth);
+        SetMaxHealth(100);
         setMoney(playerStats.CurrentMoney);
     }
 
@@ -33,12 +33,20 @@ public class UI_Script : MonoBehaviour
         }
         
     }
-
+    public int getMoney()
+    {
+        return playerStats.CurrentMoney;
+    }
     public void setMoney(int amount)
     {
         playerStats.CurrentMoney += amount;
         moneyText.text = playerStats.CurrentMoney.ToString();
     }
+
+    //public void Update()
+    //{
+    //    Debug.Log("Health" + playerStats.CurrentHealth);
+    //}
 
 
 }

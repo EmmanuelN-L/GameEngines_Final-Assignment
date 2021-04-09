@@ -33,7 +33,7 @@ public class WeaponAmmoUI : MonoBehaviour
         if (!WeaponComponent) return;
 
         WeaponNameText.text = WeaponComponent.WeaponInformation.WeaponName;
-        currentAmmoText.text = WeaponComponent.WeaponInformation.AmmoInClip.ToString() + " / ";
+        currentAmmoText.text = WeaponComponent.WeaponInformation.AmmoInClip.ToString() + "/";
         totalAmmoText.text = WeaponComponent.WeaponInformation.AmmoAvailible.ToString();
     }
 }

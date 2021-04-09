@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Lever
   - Zombie
+  - Doctor
+  - Merchant
   layers:
   - Default
   - TransparentFX

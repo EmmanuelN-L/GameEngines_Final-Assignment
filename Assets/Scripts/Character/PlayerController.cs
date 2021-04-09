@@ -7,7 +7,7 @@ namespace Character
         public CrosshairScript CrossHair => CrosshairComponent;
         [SerializeField] private CrosshairScript CrosshairComponent;
 
-        public bool IsFiring = false;
+        public bool IsFiring;
         public bool IsReloading;
         public bool IsJumping;
         public bool IsRunning;

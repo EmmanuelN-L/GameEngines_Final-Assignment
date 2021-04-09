@@ -35,7 +35,7 @@ public class AK47 : WeaponComponent
                 Debug.DrawRay(ViewCamera.transform.position, RayDirection * WeaponStats.FireDistance, Color.red);
                 HitLocation = hit;
 
-                Debug.Log("HIT: "+ HitLocation.transform.tag);
+                //Debug.Log("HIT: "+ HitLocation.transform.tag);
                 if (HitLocation.transform.tag == "Zombie")
                 {
                     Zombie = HitLocation.transform.gameObject;

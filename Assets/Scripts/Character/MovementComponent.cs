@@ -139,7 +139,7 @@ namespace Character
             Debug.Log(Lever.name);
             //lever = Lever.GetComponent<LeverFunctionality>();
             float distance = Vector3.Distance(Lever.transform.position, transform.position);
-            if(distance <= 2)
+            if(distance <= 3)
             {
                 if (Lever.GetComponent<LeverFunctionality>().isLeverUp == false)
                     Lever.GetComponent<LeverFunctionality>().isLeverUp = true;
@@ -154,6 +154,7 @@ namespace Character
             {
                 AppEvents.Invoke_OnMouseCursorEnable(true);
             }
+            Time.timeScale = 1;
             SceneManager.LoadScene("MainMenu");
 
         }

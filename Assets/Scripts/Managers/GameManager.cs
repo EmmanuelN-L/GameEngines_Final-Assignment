@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void EnableCursor(bool enable)
+    public void EnableCursor(bool enable)
     {
         if(enable)
         {
