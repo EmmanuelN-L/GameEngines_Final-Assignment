@@ -11,8 +11,8 @@ namespace Character
         public int MaxHealth { get; set; }
 
         public UI_Script playerStats;
-        private GameObject Lever;
-        public LeverFunctionality lever;
+        public GameObject Lever;
+        
         bool leverInRange = false;
 
         [SerializeField] private float WalkSpeed;
@@ -99,7 +99,6 @@ namespace Character
 
             playerStats.SetHealth(20);
             playerStats.setMoney(20);
-            lever.isLeverUp = false;
 
         }
 
@@ -109,19 +108,43 @@ namespace Character
 
             playerStats.SetHealth(-20);
             playerStats.setMoney(-20);
-            lever.isLeverUp = true;
 
+        }
+
+        public void FindClosestLever()
+        {
+            GameObject[] levers;
+
+            levers = GameObject.FindGameObjectsWithTag("Lever");
+            Lever = null;
+            float distance = Mathf.Infinity;
+            Vector3 position = transform.position;
+            foreach (GameObject go in levers)
+            {
+                Vector3 diff = go.transform.position - position;
+                float curDistance = diff.sqrMagnitude;
+                if (curDistance < distance)
+                {
+                    Lever = go;
+                    distance = curDistance;
+                }
+            }
+            
         }
 
         public void OnAction(InputValue button)
         {
-            float distance = Vector3.Distance(lever.transform.position, transform.position);
+
+            FindClosestLever();
+            Debug.Log(Lever.name);
+            //lever = Lever.GetComponent<LeverFunctionality>();
+            float distance = Vector3.Distance(Lever.transform.position, transform.position);
             if(distance <= 2)
             {
-                if (lever.isLeverUp == false)
-                    lever.isLeverUp = true;
+                if (Lever.GetComponent<LeverFunctionality>().isLeverUp == false)
+                    Lever.GetComponent<LeverFunctionality>().isLeverUp = true;
                 else
-                    lever.isLeverUp = false;
+                    Lever.GetComponent<LeverFunctionality>().isLeverUp = false;
             }
         }
 

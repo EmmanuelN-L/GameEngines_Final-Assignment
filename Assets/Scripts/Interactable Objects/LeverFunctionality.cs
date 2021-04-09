@@ -23,6 +23,8 @@ public class LeverFunctionality : MonoBehaviour
     public float moveY;
     public float moveZ;
 
+
+    Character.MovementComponent playerControls;
     private void Start()
     {
         OriginalLocation = movingPlatform.transform.position;
@@ -71,12 +73,24 @@ public class LeverFunctionality : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.collider.transform.SetParent(transform);
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.tag =="Player")
+    //    {
+    //        Debug.Log("Press E");
+    //        playerControls.Lever = gameObject;
+    //        playerControls.lever = gameObject.GetComponent<LeverFunctionality>();
+    //    }
+    //}
+
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.tag == "Player")
+    //    {
+    //        Debug.Log("Exiting");
+    //        playerControls.Lever = gameObject;
+    //        playerControls.lever = gameObject.GetComponent<LeverFunctionality>();
+    //    }
+    //}
 }
 
