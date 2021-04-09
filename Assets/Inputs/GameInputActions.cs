@@ -139,7 +139,7 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                     ""interactions"": ""Press""
                 },
                 {
-                    ""name"": ""Confirm"",
+                    ""name"": ""Heal"",
                     ""type"": ""Button"",
                     ""id"": ""bce9e232-d681-47d9-ad64-de65868ef511"",
                     ""expectedControlType"": ""Button"",
@@ -360,11 +360,11 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3d3461a8-36d5-4697-9cb0-8e8542e96651"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""path"": ""<Keyboard>/3"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Confirm"",
+                    ""action"": ""Heal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -407,7 +407,7 @@ public class @GameInputActions : IInputActionCollection, IDisposable
         m_ThirdPerson_OpenShop = m_ThirdPerson.FindAction("OpenShop", throwIfNotFound: true);
         m_ThirdPerson_Increment = m_ThirdPerson.FindAction("Increment", throwIfNotFound: true);
         m_ThirdPerson_Decrement = m_ThirdPerson.FindAction("Decrement", throwIfNotFound: true);
-        m_ThirdPerson_Confirm = m_ThirdPerson.FindAction("Confirm", throwIfNotFound: true);
+        m_ThirdPerson_Heal = m_ThirdPerson.FindAction("Heal", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -472,7 +472,7 @@ public class @GameInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_ThirdPerson_OpenShop;
     private readonly InputAction m_ThirdPerson_Increment;
     private readonly InputAction m_ThirdPerson_Decrement;
-    private readonly InputAction m_ThirdPerson_Confirm;
+    private readonly InputAction m_ThirdPerson_Heal;
     public struct ThirdPersonActions
     {
         private @GameInputActions m_Wrapper;
@@ -492,7 +492,7 @@ public class @GameInputActions : IInputActionCollection, IDisposable
         public InputAction @OpenShop => m_Wrapper.m_ThirdPerson_OpenShop;
         public InputAction @Increment => m_Wrapper.m_ThirdPerson_Increment;
         public InputAction @Decrement => m_Wrapper.m_ThirdPerson_Decrement;
-        public InputAction @Confirm => m_Wrapper.m_ThirdPerson_Confirm;
+        public InputAction @Heal => m_Wrapper.m_ThirdPerson_Heal;
         public InputActionMap Get() { return m_Wrapper.m_ThirdPerson; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -547,9 +547,9 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                 @Decrement.started -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnDecrement;
                 @Decrement.performed -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnDecrement;
                 @Decrement.canceled -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnDecrement;
-                @Confirm.started -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnConfirm;
-                @Confirm.performed -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnConfirm;
-                @Confirm.canceled -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnConfirm;
+                @Heal.started -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnHeal;
+                @Heal.performed -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnHeal;
+                @Heal.canceled -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnHeal;
             }
             m_Wrapper.m_ThirdPersonActionsCallbackInterface = instance;
             if (instance != null)
@@ -599,9 +599,9 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                 @Decrement.started += instance.OnDecrement;
                 @Decrement.performed += instance.OnDecrement;
                 @Decrement.canceled += instance.OnDecrement;
-                @Confirm.started += instance.OnConfirm;
-                @Confirm.performed += instance.OnConfirm;
-                @Confirm.canceled += instance.OnConfirm;
+                @Heal.started += instance.OnHeal;
+                @Heal.performed += instance.OnHeal;
+                @Heal.canceled += instance.OnHeal;
             }
         }
     }
@@ -632,6 +632,6 @@ public class @GameInputActions : IInputActionCollection, IDisposable
         void OnOpenShop(InputAction.CallbackContext context);
         void OnIncrement(InputAction.CallbackContext context);
         void OnDecrement(InputAction.CallbackContext context);
-        void OnConfirm(InputAction.CallbackContext context);
+        void OnHeal(InputAction.CallbackContext context);
     }
 }

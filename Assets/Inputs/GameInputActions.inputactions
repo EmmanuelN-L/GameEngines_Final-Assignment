@@ -126,7 +126,7 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "Confirm",
+                    "name": "Heal",
                     "type": "Button",
                     "id": "bce9e232-d681-47d9-ad64-de65868ef511",
                     "expectedControlType": "Button",
@@ -347,11 +347,11 @@
                 {
                     "name": "",
                     "id": "3d3461a8-36d5-4697-9cb0-8e8542e96651",
-                    "path": "<Keyboard>/enter",
+                    "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Confirm",
+                    "action": "Heal",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
