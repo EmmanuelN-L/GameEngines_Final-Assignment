@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LeverFunctionality : MonoBehaviour
 {
@@ -9,7 +10,9 @@ public class LeverFunctionality : MonoBehaviour
     public float Rotation_Speed;
     public float Rotation_Friction; //The smaller the value, the more Friction there is. [Keep this at 1 unless you know what you are doing].
     public float Rotation_Smoothness; //Believe it or not, adjusting this before anything else is the best way to go.
-   
+
+    public TMP_Text feedback;
+
     private Quaternion Quaternion_Rotate_From;
     private Quaternion Quaternion_Rotate_To;
 
@@ -73,24 +76,21 @@ public class LeverFunctionality : MonoBehaviour
         }
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.tag =="Player")
-    //    {
-    //        Debug.Log("Press E");
-    //        playerControls.Lever = gameObject;
-    //        playerControls.lever = gameObject.GetComponent<LeverFunctionality>();
-    //    }
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            feedback.text = "Press E to use Lever";
 
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.tag == "Player")
-    //    {
-    //        Debug.Log("Exiting");
-    //        playerControls.Lever = gameObject;
-    //        playerControls.lever = gameObject.GetComponent<LeverFunctionality>();
-    //    }
-    //}
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            feedback.text = null;
+        }
+    }
 }
 

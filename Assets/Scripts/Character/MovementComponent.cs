@@ -141,6 +141,7 @@ namespace Character
             float distance = Vector3.Distance(Lever.transform.position, transform.position);
             if(distance <= 3)
             {
+
                 if (Lever.GetComponent<LeverFunctionality>().isLeverUp == false)
                     Lever.GetComponent<LeverFunctionality>().isLeverUp = true;
                 else

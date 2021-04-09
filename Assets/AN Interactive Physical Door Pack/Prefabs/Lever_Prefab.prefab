@@ -104,6 +104,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1577609632647162967}
+  - component: {fileID: 8238528724095286552}
+  - component: {fileID: 9220066481051098984}
   m_Layer: 0
   m_Name: Lever_Prefab
   m_TagString: Untagged
@@ -128,6 +130,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8238528724095286552
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2575938327731363396}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0.000000007450582, y: -0.0000000027939635, z: 0.14874525}
+--- !u!54 &9220066481051098984
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2575938327731363396}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &7727883797297684363
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +170,6 @@ GameObject:
   - component: {fileID: 506214209605000422}
   - component: {fileID: 2851979512042423321}
   - component: {fileID: 7066963040038473936}
-  - component: {fileID: 1003744352617813177}
   m_Layer: 0
   m_Name: Lever_main
   m_TagString: Lever
@@ -212,19 +242,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1003744352617813177
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7727883797297684363}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 3, z: 3}
-  m_Center: {x: 0.17582123, y: -0.36480582, z: -0.3356106}
 --- !u!1 &8547448563377378517
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,8 +254,8 @@ GameObject:
   - component: {fileID: 6744138384960208247}
   - component: {fileID: 5240167562397193625}
   - component: {fileID: 9162931036747220872}
-  - component: {fileID: 4577857823655094505}
-  - component: {fileID: 3072458027561813676}
+  - component: {fileID: 6187982849803706329}
+  - component: {fileID: 8407254673915729195}
   m_Layer: 0
   m_Name: Lever
   m_TagString: Untagged
@@ -327,6 +344,7 @@ MonoBehaviour:
   Rotation_Speed: 2.3
   Rotation_Friction: 1
   Rotation_Smoothness: 5
+  feedback: {fileID: 0}
   movingPlatform: {fileID: 1528302326}
   MoveLocation: {x: 0, y: 0, z: 0}
   move: 0
@@ -334,7 +352,7 @@ MonoBehaviour:
   moveX: 0
   moveY: 0
   moveZ: 0
---- !u!65 &4577857823655094505
+--- !u!65 &6187982849803706329
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -347,7 +365,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 3, z: 3}
   m_Center: {x: 0.000000007450582, y: -0.0000000027939635, z: 0.14874525}
---- !u!54 &3072458027561813676
+--- !u!54 &8407254673915729195
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -361,5 +379,5 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0

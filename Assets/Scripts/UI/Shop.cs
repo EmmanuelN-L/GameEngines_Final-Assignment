@@ -26,7 +26,6 @@ public class Shop : MonoBehaviour
         float merchantDistance = Vector3.Distance(Merchant.transform.position, transform.position);
         if (doctorDistance < 2)
         {
-
             if (!doctorShopPanel.activeSelf)
             {
                 
