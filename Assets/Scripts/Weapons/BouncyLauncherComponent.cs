@@ -51,10 +51,6 @@ public class BouncyLauncherComponent : WeaponComponent
         {
             Gizmos.DrawWireSphere(HitLocation.point, 1.0f);
             Debug.Log("HIT");
-
-            
-
-
         }  
     }
 }

@@ -42,12 +42,12 @@ public class LeverFunctionality : MonoBehaviour
         if (move)
         {
             movingPlatform.transform.position = Vector3.Lerp(movingPlatform.transform.position, MoveLocation, movementSpeed * Time.deltaTime);
-            Debug.Log("UP");
+            //Debug.Log("UP");
         }
         else
         {
             movingPlatform.transform.position = Vector3.Lerp(movingPlatform.transform.position, OriginalLocation, movementSpeed * Time.deltaTime);
-            Debug.Log("down");
+            //Debug.Log("down");
         }
     }
 

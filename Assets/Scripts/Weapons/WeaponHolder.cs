@@ -57,11 +57,12 @@ public class WeaponHolder : MonoBehaviour
             {
                 EquippedWeapon.Initialize(this, PlayerCrosshair);
                 GripIKLocation = EquippedWeapon.GripLocation;
-                PlayerAnimator.SetInteger(WeaponTypeHash, (int)EquippedWeapon.WeaponInformation.WeaponType);               
+                PlayerAnimator.SetInteger(WeaponTypeHash, (int)EquippedWeapon.WeaponInformation.WeaponType);
             }
         }
 
         PlayerEvent.Invoke_OnWeaponEquipped(EquippedWeapon);
+        PlayerAnimator.SetBool(IsFiringHash, PlayerController.IsFiring);
     }
 
     private void OnAnimatorIK(int layerIndex)
@@ -82,7 +83,7 @@ public class WeaponHolder : MonoBehaviour
             PlayerController.IsFiring = true;
             PlayerAnimator.SetBool(IsFiringHash, PlayerController.IsFiring);
             EquippedWeapon.StartFiringWeapon();
-            Debug.Log("hello");
+            //Debug.Log("hello");
         }
         else
         {
