@@ -9,6 +9,7 @@ public class Key : MonoBehaviour
     public void Start()
     {
         playerStats = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<UI_Script>();
+        end = GameObject.FindGameObjectWithTag("Ending").GetComponent<Ending>();
     }
     private void OnTriggerEnter(Collider other)
     {

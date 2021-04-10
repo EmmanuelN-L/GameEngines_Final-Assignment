@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class UI_Script : MonoBehaviour
 {
     public PlayerStats playerStats;
@@ -30,6 +31,7 @@ public class UI_Script : MonoBehaviour
         if(slider.value <= 0)
         {
             Debug.Log("You dead");
+            SceneManager.LoadScene("End");
         }
         
     }
@@ -43,10 +45,10 @@ public class UI_Script : MonoBehaviour
         moneyText.text = playerStats.CurrentMoney.ToString();
     }
 
-    //public void Update()
-    //{
-    //    Debug.Log("Health" + playerStats.CurrentHealth);
-    //}
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 
 
 }

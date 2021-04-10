@@ -50,8 +50,9 @@ public class Bouncy_Grenade : MonoBehaviour
         }
         //Add force
         //Damage
-        Destroy(explosionEffect, 5);
-        Destroy(gameObject, 5);
+        Destroy(explosionEffect, 3);
+        Destroy(gameObject);
+
         //Remove grenade
     }
 }

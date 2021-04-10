@@ -176,7 +176,7 @@ MonoBehaviour:
     AmmoInClip: 1
     ClipSize: 1
     AmmoAvailible: 30
-    FireStartDelay: 3
+    FireStartDelay: 1
     FireRate: 0.2
     FireDistance: 100
     Repeating: 1

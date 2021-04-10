@@ -10,7 +10,7 @@ public class AK47Bullet : MonoBehaviour
 
     private Transform player;
     private Vector3 target;
-    public float damage = 6;
+    public float damage = 15;
     private UI_Script playerStats;
     float distance;
 
