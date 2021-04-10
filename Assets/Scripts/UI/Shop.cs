@@ -130,9 +130,12 @@ public class Shop : MonoBehaviour
 
     public void OnHeal(InputValue button)
     {
-        Debug.Log("Healing");
-        playerStats.SetHealth(40);
-        setBandages(-1);
+        if(amountBandages > 0)
+        {        
+            Debug.Log("Healing");    
+            playerStats.SetHealth(40);
+            setBandages(-1);
+        }
 
     }
 }

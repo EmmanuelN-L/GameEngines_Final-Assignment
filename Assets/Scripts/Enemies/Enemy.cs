@@ -12,9 +12,12 @@ public class Enemy : MonoBehaviour
     private float timeBtweenShots;
     public float startTimeBtweenshots;
     public Transform BulletSpawn;
+    public float health;
+
+    public GameObject key;
 
     private Transform player;
-    private float positionY;
+    private float positionY;   
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +25,8 @@ public class Enemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         Debug.Log(player.name);
         positionY = transform.position.y;
+        health = 200;
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -54,5 +57,11 @@ public class Enemy : MonoBehaviour
             timeBtweenShots -= Time.deltaTime;
         }
 
+    }
+    public void defeated()
+    {
+        Debug.Log("I'm defeated ");
+        Instantiate(key, new Vector3(transform.position.x, transform.position.y + 3, transform.position.z), Quaternion.identity);
+        Destroy(gameObject);
     }
 }

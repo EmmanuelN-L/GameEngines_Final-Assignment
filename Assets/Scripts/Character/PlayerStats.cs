@@ -8,6 +8,7 @@ public class PlayerStats : MonoBehaviour
 
     public int CurrentMoney{ get; set; }
 
+
     public UI_Script healthBar;
 
     private void Start()
@@ -16,6 +17,7 @@ public class PlayerStats : MonoBehaviour
         MaxHealth = 100;
         CurrentHealth = MaxHealth;
         CurrentMoney = 0;
+        
     }
 
     //public void OnJump(InputValue button)

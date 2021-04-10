@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 4124613432317874615}
   m_Layer: 8
   m_Name: Soldier
-  m_TagString: Player
+  m_TagString: Soldier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -614,6 +614,8 @@ MonoBehaviour:
   projectile: {fileID: 163324848878041115, guid: c00831ca8f2f09540ba2842bd26d2b32, type: 3}
   startTimeBtweenshots: 60
   BulletSpawn: {fileID: 4229851851767265231}
+  health: 0
+  key: {fileID: 0}
 --- !u!1 &819764552637225844
 GameObject:
   m_ObjectHideFlags: 0
